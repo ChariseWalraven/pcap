@@ -8,6 +8,7 @@
 
 
 # TODO: Refactor for brevity and clarity
+# TODO: fix bug
 def mysplit(strng):
     lst = []
     substring = ''
@@ -30,7 +31,10 @@ print(mysplit(""))
 
 # Expected Output:
 # ['To', 'be', 'or', 'not', 'to', 'be,', 'that', 'is', 'the', 'question']
+# BUG: result: ['To', 'be', 'or', 'n', 'ot', 'to', 'be,', 'that', 'is', 'the', 'question']
 # ['To', 'be', 'or', 'not', 'to', 'be,that', 'is', 'the', 'question']
+# BUG: ['To', 'be', 'or', 'n', 'ot', 'to', 'be,that', 'is', 'the', 'question']
+# NOTE: the following is working
 # []
 # ['abc']
 # []
