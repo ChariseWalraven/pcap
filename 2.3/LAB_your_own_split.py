@@ -8,33 +8,33 @@
 
 
 # TODO: Refactor for brevity and clarity
-# TODO: fix bug
-def mysplit(strng):
-    lst = []
+def mysplit(strng) -> list:
+    results = []
     substring = ''
-    for c in strng:
+    for idx, c in enumerate(strng):
         substring += c
         substring = substring.strip()
 
-        if (c.isspace() or strng.rfind(c) == (len(strng) - 1)) and len(substring) > 0:
-            lst.append(substring)
+        # if c is a whitespace character, or if this is the last character in strng, and substring is
+        # not an empty string
+        if (c.isspace() or idx == len(strng) - 1) and len(substring) > 0:
+            results.append(substring)
             substring = ''
 
-    return lst
+    return results
 
 
+# Tests:
 print(mysplit("To be or not to be, that is the question"))
 print(mysplit("To be or not to be,that is the question"))
 print(mysplit("   "))
 print(mysplit(" abc "))
+print(mysplit(" a b c d e f "))
 print(mysplit(""))
 
 # Expected Output:
 # ['To', 'be', 'or', 'not', 'to', 'be,', 'that', 'is', 'the', 'question']
-# BUG: result: ['To', 'be', 'or', 'n', 'ot', 'to', 'be,', 'that', 'is', 'the', 'question']
 # ['To', 'be', 'or', 'not', 'to', 'be,that', 'is', 'the', 'question']
-# BUG: ['To', 'be', 'or', 'n', 'ot', 'to', 'be,that', 'is', 'the', 'question']
-# NOTE: the following is working
 # []
 # ['abc']
 # []
