@@ -7,7 +7,6 @@
 """
 
 
-# TODO: Refactor for brevity and clarity
 def mysplit(strng) -> list:
     results = []
     substring = ''
