@@ -32,7 +32,9 @@ class Queue:
         self.__queue = []
 
     def put(self, elem):
-        pass
+        # While it's easier to just append the elements, the hints say to insert them at the beginning, so that's
+        # what I'm doing here.
+        self.__queue.insert(0, elem)
 
     def get(self):
         pass
