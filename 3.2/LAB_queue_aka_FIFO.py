@@ -16,19 +16,13 @@ class QueueError(LookupError):  # LookupError because in this case the queue doe
 
 class Queue:
     def __init__(self):
-        #
-        # Write code here
-        #
+        self.__queue = []
 
     def put(self, elem):
-        #
-        # Write code here
-        #
+        pass
 
     def get(self):
-        #
-        # Write code here
-        #
+        pass
 
 
 que = Queue()
@@ -38,8 +32,10 @@ que.put(False)
 try:
     for i in range(4):
         print(que.get())
-except:
-    print("Queue error")
+except QueueError as e:
+    print("Queue error", e)
+except BaseException as e:
+    print('Whoops! Something funny happened.', e)
 
 # Expected output:
 # 1
