@@ -21,8 +21,8 @@
 # define a new exception named QueueError (choose an exception to derive it from) and raise it when get() tries to
 # operate on an empty list.
 
-
 # Scenario (part 2)
+
 # Your task is to slightly extend the Queue class' capabilities. We want it to have a parameterless method that returns
 # True if the queue is empty and False otherwise.
 
