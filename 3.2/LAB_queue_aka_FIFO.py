@@ -48,13 +48,14 @@ que = Queue()
 que.put(1)
 que.put("dog")
 que.put(False)
+
 try:
     for i in range(4):
         print(que.get())
-except QueueError as e:
-    print("Queue error", e)
+except QueueError:
+    print("Queue error")
 except BaseException as e:
-    print('Whoops! Something funny happened.', e)
+    print('Whoops! Something weird happened.', e)
 
 # Expected output:
 # 1
