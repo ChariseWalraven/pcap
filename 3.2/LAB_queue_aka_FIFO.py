@@ -34,26 +34,24 @@ class QueueError(LookupError):  # LookupError because in this case the queue doe
 
 class Queue:
     def __init__(self):
-        self.__queue = []
+        self.queue = []
 
     def put(self, elem):
         # While it's easier to just append the elements, the hints say to insert them at the beginning, so that's
         # what I'm doing here.
-        self.__queue.insert(0, elem)
+        self.queue.insert(0, elem)
 
     def get(self):
-        if not self.__queue:  # empty lists are falsy so this evaluates to True if the queue is empty
+        if not self.queue:  # empty lists are falsy so this evaluates to True if the queue is empty
             raise QueueError()
-        val = self.__queue[-1]
-        del self.__queue[-1]
+        val = self.queue[-1]
+        del self.queue[-1]
         return val
 
 
 class SuperQueue(Queue):
-    #
-    # Write new code here.
-    #
-    pass
+    def isempty(self):
+        return not self.queue
 
 
 que = Queue()
