@@ -1,4 +1,4 @@
-# Scenario
+# Scenario (part 1)
 
 # As you already know, a stack is a data structure realizing the LIFO (Last In – First Out) model. It's easy and you've
 # already grown perfectly accustomed to it.
@@ -20,6 +20,11 @@
 # list;
 # define a new exception named QueueError (choose an exception to derive it from) and raise it when get() tries to
 # operate on an empty list.
+
+
+# Scenario (part 2)
+# Your task is to slightly extend the Queue class' capabilities. We want it to have a parameterless method that returns
+# True if the queue is empty and False otherwise.
 
 
 class QueueError(LookupError):  # LookupError because in this case the queue doesn't exist
@@ -44,6 +49,13 @@ class Queue:
         return val
 
 
+class SuperQueue(Queue):
+    #
+    # Write new code here.
+    #
+    pass
+
+
 que = Queue()
 que.put(1)
 que.put("dog")
@@ -62,3 +74,19 @@ except BaseException as e:
 # dog
 # False
 # Queue error
+
+que = SuperQueue()
+que.put(1)
+que.put("dog")
+que.put(False)
+for i in range(4):
+    if not que.isempty():
+        print(que.get())
+    else:
+        print("Queue empty")
+
+# Expected output:
+# 1
+# dog
+# False
+# Queue empty
