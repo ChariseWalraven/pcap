@@ -37,7 +37,11 @@ class Queue:
         self.__queue.insert(0, elem)
 
     def get(self):
-        pass
+        if not self.__queue:  # empty lists are falsy so this evaluates to True if the queue is empty
+            raise QueueError()
+        val = self.__queue[-1]
+        del self.__queue[-1]
+        return val
 
 
 que = Queue()
