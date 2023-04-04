@@ -9,10 +9,9 @@
 # get(), which takes an element from the front of the queue and returns it as the result (the queue cannot be empty to successfully perform it.)
 
 
-class QueueError(LookupError):  # Choose base class for the new exception.
-    #
-    #  Write code here
-    #
+class QueueError(LookupError):  # LookupError because in this case the queue doesn't exist
+    "Raised when the queue doesn't exist"
+    pass
 
 
 class Queue:
