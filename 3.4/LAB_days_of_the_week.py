@@ -23,21 +23,16 @@ class WeekDayError(Exception):
 
 
 class Weeker:
-    #
-    # Write code here.
-    #
+    __days__ = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', ]
 
     def __init__(self, day):
-        #
-        # Write code here.
-        #
-        pass
+        if day not in Weeker.__days__:
+            raise WeekDayError()
+
+        self.day = day
 
     def __str__(self):
-        #
-        # Write code here.
-        #
-        pass
+        return self.day
 
     def add_days(self, n):
         #
