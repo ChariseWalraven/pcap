@@ -16,10 +16,7 @@ from LAB_points_on_a_plane import Point
 
 class Triangle:
     def __init__(self, vertice1, vertice2, vertice3):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        self.__points = [vertice1, vertice2, vertice3, ]
 
     def perimeter(self):
         #
