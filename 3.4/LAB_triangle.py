@@ -10,7 +10,7 @@
 # described by the three points; the perimeter is a sum of all legs' lengths (we mention it for the record, although we
 # are sure that you know it perfectly yourself.)
 
-import math # noqa
+import math  # noqa
 from LAB_points_on_a_plane import Point
 
 
