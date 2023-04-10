@@ -37,10 +37,7 @@ class Point:
         return self._y
 
     def distance_from_xy(self, x, y):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        return math.hypot(self._x - x, self._y - y)
 
     def distance_from_point(self, point):
         #
