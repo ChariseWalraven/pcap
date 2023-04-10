@@ -19,10 +19,12 @@ class Triangle:
         self.__points = [vertice1, vertice2, vertice3, ]
 
     def perimeter(self):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        # lengths of the sides of the triangle = distance between vertices
+        # perimeter = sum of lengths
+        # NOTE: I'm not sure this list comprehension thing is the most readable. If anyone ever tries to understand
+        # this and I'm not dead, please just ask me 💀
+        return sum([self.__points[i].distance_from_point(
+            self.__points[i - 1]) for i in range(len(self.__points) - 1, -1, -1)])
 
 
 triangle = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))
