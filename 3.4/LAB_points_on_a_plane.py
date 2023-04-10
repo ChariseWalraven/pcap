@@ -40,10 +40,7 @@ class Point:
         return math.hypot(self._x - x, self._y - y)
 
     def distance_from_point(self, point):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        return math.hypot(self._x - point.getx(), self._y - point.gety())
 
 
 point1 = Point(0, 0)
