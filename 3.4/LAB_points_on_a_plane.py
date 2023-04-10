@@ -31,10 +31,7 @@ class Point:
         self._y = y
 
     def getx(self):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        return self._x
 
     def gety(self):
         #
