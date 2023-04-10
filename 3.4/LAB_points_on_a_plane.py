@@ -27,10 +27,8 @@ import math # noqa
 
 class Point:
     def __init__(self, x=0.0, y=0.0):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        self._x = x
+        self._y = y
 
     def getx(self):
         #
