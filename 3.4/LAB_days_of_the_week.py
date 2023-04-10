@@ -17,7 +17,15 @@
 # integer number and updating the day of week stored inside the object in the way reflecting the change of date by the
 # indicated number of days, forward or backward.
 # - all object's properties should be private;
+
+# NOTE: I recognise that this code also contains duplicates and could be refactored like I did with the Timer
+# class from the previous lab. However, I feel I've proven that I can do that and am capable of doing it again
+# and so in the interest of finishing this course on time, I've decided to leave the duplication in here for
+# now.
+
 from math import floor
+
+
 class WeekDayError(Exception):
     pass
 
@@ -46,7 +54,13 @@ class Weeker:
         self.day = new_day
 
     def subtract_days(self, n):
-        raise NotImplementedError('subtract_days method has not been implemented')
+        # formula is same as for add_days, except that we subtract the
+        # difference in days instead of adding it
+        days_behind = n - 7 * floor(n / 7)
+        day_idx = Weeker.__days__.index(self.day)
+        new_day_index = day_idx - days_behind
+        new_day = Weeker.__days__[new_day_index]
+        self.day = new_day
 
 
 try:
@@ -55,6 +69,8 @@ try:
     weekday.add_days(15)
     print(weekday)
     weekday.subtract_days(23)
+    print(weekday)
+    weekday.subtract_days(1)
     print(weekday)
     weekday = Weeker('Monday')
 except WeekDayError:
@@ -65,4 +81,5 @@ except WeekDayError:
 # Mon
 # Tue
 # Sun
+# Sat
 # Sorry, I can't serve your request.
