@@ -31,10 +31,10 @@ class WeekDayError(Exception):
 
 
 class Weeker:
-    __days__ = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', ]
+    __days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', ]
 
     def __init__(self, day):
-        if day not in Weeker.__days__:
+        if day not in Weeker.__days:
             raise WeekDayError()
 
         self.day = day
@@ -48,18 +48,18 @@ class Weeker:
         # x = n - floor(n - 7) = days ahead of same day in that week
         # new day index = current day index + x
         days_ahead = n - 7 * floor(n / 7)
-        day_idx = Weeker.__days__.index(self.day)
+        day_idx = Weeker.__days.index(self.day)
         new_day_index = day_idx + days_ahead
-        new_day = Weeker.__days__[new_day_index]
+        new_day = Weeker.__days[new_day_index]
         self.day = new_day
 
     def subtract_days(self, n):
         # formula is same as for add_days, except that we subtract the
         # difference in days instead of adding it
         days_behind = n - 7 * floor(n / 7)
-        day_idx = Weeker.__days__.index(self.day)
+        day_idx = Weeker.__days.index(self.day)
         new_day_index = day_idx - days_behind
-        new_day = Weeker.__days__[new_day_index]
+        new_day = Weeker.__days[new_day_index]
         self.day = new_day
 
 

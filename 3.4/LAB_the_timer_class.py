@@ -40,9 +40,9 @@ class Deviation(Enum):
 
 class Timer:
     # use lists to loop through seconds, minutes and hours
-    __sixty__ = [i for i in range(60)]
-    __hours__ = [i for i in range(24)]
-    __zero__ = '00:00:00'
+    __sixty = [i for i in range(60)]
+    __hours = [i for i in range(24)]
+    __zero = '00:00:00'
 
     def __init__(self, hours=0, minutes=0, seconds=0):
         self.hours = hours
@@ -55,17 +55,17 @@ class Timer:
         ss = str(self.seconds).zfill(2)
         return f"{hh}:{mm}:{ss}"
 
-    def __is_zero__(self):
-        return str(self) == Timer.__zero__
+    def __is_zero(self):
+        return str(self) == Timer.__zero
 
-    def __deviate_time__(self, unit=TimeUnit.SECONDS, deviation=Deviation.FORWARDS):
+    def __deviate_time(self, unit=TimeUnit.SECONDS, deviation=Deviation.FORWARDS):
         if type(unit) != TimeUnit:
             raise TypeError('"unit" must be a TimeUnit Enum')
         if type(deviation) != Deviation:
             raise TypeError('"deviation" must be a Deviation Enum')
 
         time_units = TimeUnit.UNITS.value
-        base = Timer.__sixty__ if unit.value != TimeUnit.HOURS.value else Timer.__hours__
+        base = Timer.__sixty if unit.value != TimeUnit.HOURS.value else Timer.__hours
         idx = base.index(getattr(self, unit.value))
         limit = len(base) - 1 if deviation == Deviation.FORWARDS else 0
         unit_idx = time_units.index(unit.value)
@@ -83,18 +83,18 @@ class Timer:
 
             # increment the next unit if there is one
             if next_unit:
-                self.__deviate_time__(next_unit, deviation=deviation)
+                self.__deviate_time(next_unit, deviation=deviation)
         else:
             setattr(self, unit.value, base[idx + deviation.value])
 
     def next_second(self):
-        self.__deviate_time__()
+        self.__deviate_time()
 
     def prev_second(self):
-        self.__deviate_time__(deviation=Deviation.BACKWARDS)
+        self.__deviate_time(deviation=Deviation.BACKWARDS)
 
     def count_down(self):
-        while not self.__is_zero__():
+        while not self.__is_zero():
             print(self)
             self.prev_second()
             sleep(1)
