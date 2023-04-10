@@ -21,11 +21,9 @@
 
 # - all object's properties should be private;
 # - consider writing a separate function (not method!) to format the time string.
-import json
 
-from time import sleep
 from enum import Enum
-from sorcery import dict_of
+from time import sleep
 
 
 class TimeUnit(Enum):
@@ -44,6 +42,7 @@ class Timer:
     # use lists to loop through seconds, minutes and hours
     __sixty__ = [i for i in range(60)]
     __hours__ = [i for i in range(24)]
+    __zero__ = '00:00:00'
 
     def __init__(self, hours=0, minutes=0, seconds=0):
         self.hours = hours
@@ -56,19 +55,20 @@ class Timer:
         ss = str(self.seconds).zfill(2)
         return f"{hh}:{mm}:{ss}"
 
+    def __is_zero__(self):
+        return str(self) == Timer.__zero__
+
     def __deviate_time__(self, unit=TimeUnit.SECONDS, deviation=Deviation.FORWARDS):
         if type(unit) != TimeUnit:
             raise TypeError('"unit" must be a TimeUnit Enum')
         if type(deviation) != Deviation:
             raise TypeError('"deviation" must be a Deviation Enum')
 
-        unit = unit.value
         time_units = TimeUnit.UNITS.value
-        base = Timer.__sixty__ if unit != TimeUnit.HOURS.value else Timer.__hours__
-        self_unit = getattr(self, unit)
-        idx = base.index(self_unit)
+        base = Timer.__sixty__ if unit.value != TimeUnit.HOURS.value else Timer.__hours__
+        idx = base.index(getattr(self, unit.value))
         limit = len(base) - 1 if deviation == Deviation.FORWARDS else 0
-        unit_idx = time_units.index(unit)
+        unit_idx = time_units.index(unit.value)
         next_unit = TimeUnit(
             time_units[unit_idx + 1]) if unit_idx < len(time_units) - 1 else None
 
@@ -76,16 +76,16 @@ class Timer:
         if idx == limit:
             if deviation == Deviation.FORWARDS:
                 # start at the beginning of the cycle again
-                setattr(self, unit, base[0])
+                setattr(self, unit.value, base[0])
             else:
                 # go to end of cycle
-                setattr(self, unit, base[-1])
+                setattr(self, unit.value, base[-1])
 
             # increment the next unit if there is one
             if next_unit:
                 self.__deviate_time__(next_unit, deviation=deviation)
         else:
-            setattr(self, unit, base[idx + deviation.value])
+            setattr(self, unit.value, base[idx + deviation.value])
 
     def next_second(self):
         self.__deviate_time__()
@@ -93,17 +93,18 @@ class Timer:
     def prev_second(self):
         self.__deviate_time__(deviation=Deviation.BACKWARDS)
 
+    def count_down(self):
+        while not self.__is_zero__():
+            print(self)
+            self.prev_second()
+            sleep(1)
+        else:
+            print('Timer finished!')
 
-timer = Timer(23, 59, 59)
-print(timer)
-timer.next_second()
-print(timer)
-timer.next_second()
-print(timer)
-timer.prev_second()
-print(timer)
-timer.prev_second()
-print(timer)
+
+timer = Timer(seconds=10)
+
+timer.count_down()
 
 
 # expected output:
