@@ -11,13 +11,7 @@
 # are sure that you know it perfectly yourself.)
 
 import math # noqa
-
-
-class Point:
-    #
-    # The code copied from the previous lab.
-    #
-    raise NotImplementedError()
+from LAB_points_on_a_plane import Point
 
 
 class Triangle:
