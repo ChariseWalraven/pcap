@@ -27,5 +27,6 @@ class Triangle:
             self.__points[i - 1]) for i in range(len(self.__points) - 1, -1, -1)])
 
 
-triangle = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))
-print(triangle.perimeter())
+if __name__ == '__main__':
+    triangle = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))
+    print(triangle.perimeter())
