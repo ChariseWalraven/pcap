@@ -34,10 +34,7 @@ class Point:
         return self._x
 
     def gety(self):
-        #
-        # Write code here
-        #
-        raise NotImplementedError()
+        return self._y
 
     def distance_from_xy(self, x, y):
         #
