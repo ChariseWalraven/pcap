@@ -19,9 +19,15 @@ def create_frequency_hist(file_content):
     return hist
 
 
+def print_output(hist):
+    for k, v in hist.items():
+        s = f'{k} -> {v}'
+        print(s)
+
+
 if __name__ == "__main__":
     # filename = get_filename()
     file_content = get_file_content('test.txt')
-    print(create_frequency_hist(file_content))
-
+    hist = create_frequency_hist(file_content)
+    print_output(hist)
 
