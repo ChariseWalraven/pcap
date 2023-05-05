@@ -9,3 +9,16 @@
 # Weekday: 3
 # Day of the year: 309
 # Week number of the year: 44
+from datetime import date, datetime
+
+def print_datetime():
+    nov_date = datetime.fromisoformat('2020-11-04T14:53:00')
+    print(nov_date.strftime("%Y/%m/%d% %H:%M:%S"))
+    print(nov_date.strftime("%Y/%B/%d% %H:%M:%S %p"))
+    print(nov_date.strftime("%a, %Y %h %d"))
+    print(nov_date.strftime("%A, %Y %B %d"))
+    print(nov_date.strftime("Weekday: %w"))
+    print(nov_date.strftime("Day of the year: %j"))
+    print(nov_date.strftime("Week number of the year: %U"))
+
+print_datetime()
