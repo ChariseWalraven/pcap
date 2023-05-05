@@ -26,3 +26,29 @@
 # Expected output
 
 # 53
+
+from calendar import Calendar
+
+
+class MyCalendar(Calendar):
+    def __init__(self, firstweekday=0):
+        super().__init__(firstweekday)
+
+    def count_weekday_in_year(self, year, weekday):
+        num_monthdays  = 0
+        for month in range(1, 13):
+            monthdays = self.monthdays2calendar(year, month)
+            weekdays_in_month = [t for m in monthdays for t in m if t[0] != 0 and t[1] == weekday]
+
+            num_monthdays += (len(weekdays_in_month))
+
+        return num_monthdays
+
+
+
+c = MyCalendar()
+
+print(c.count_weekday_in_year(2023, 0))
+
+
+
