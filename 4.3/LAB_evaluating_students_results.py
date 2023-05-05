@@ -26,13 +26,54 @@
 # your program must be fully protected against all possible failures: the file's non-existence, the file's emptiness, or any input data failures; encountering any data error should cause immediate program termination, and the erroneous should be presented to the user;
 # implement and use your own exceptions hierarchy - we've presented it in the editor; the second exception should be raised when a bad line is detect, and the third when the source file exists but is empty.
 
+# Tip: Use a dictionary to store the students' data.
+
+# exceptions
 class StudentsDataException(Exception):
     pass
 
 
 class BadLine(StudentsDataException):
-    # Write your code here.
+    pass
 
 
 class FileEmpty(StudentsDataException):
-    # Write your code here.
+    pass
+
+
+def get_file_name():
+    return input('Please enter the file name: ')
+
+
+def read_file_contents(filename):
+    f = open(filename, 'r')
+    contents = f.read()
+    if len(contents) == 0:
+        raise FileEmpty()
+    return contents
+
+def sort_file_contents(file_contents):
+    students = {}
+    try:
+        for line in file_contents.split('\n'):
+            s_line = line.split(' ')
+            name = ' '.join(s_line[0:2])
+            score = s_line[-1]
+            if name in students:
+                students[name] += float(score)
+            else:
+                students[name] = float(score)
+    except ValueError:
+        raise BadLine()
+
+    print(students)
+
+if __name__ == '__main__':
+    try:
+        filename = get_file_name()
+        file_contents = read_file_contents(filename)
+        sort_file_contents(file_contents)
+    except FileEmpty:
+        print('The file specified is empty! Please select a file that is not empty.')
+    except BadLine:
+        print("There's something wrong with the data. Please check that all lines contain only student names and their scores.")
